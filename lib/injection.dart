@@ -13,6 +13,9 @@ import 'package:ditonton/folder_movie/domain/usecases/get_watchlist_status.dart'
 import 'package:ditonton/folder_movie/domain/usecases/remove_watchlist.dart';
 import 'package:ditonton/folder_movie/domain/usecases/save_watchlist.dart';
 import 'package:ditonton/folder_movie/domain/usecases/search_movies.dart';
+import 'package:ditonton/folder_movie/presentation/bloc/movie/movie_bloc.dart';
+import 'package:ditonton/folder_movie/presentation/bloc/movie/movie_toprated_bloc.dart';
+import 'package:ditonton/folder_movie/presentation/bloc/search/movie_search_bloc.dart';
 import 'package:ditonton/folder_movie/presentation/provider/movie_detail_notifier.dart';
 import 'package:ditonton/folder_movie/presentation/provider/movie_list_notifier.dart';
 import 'package:ditonton/folder_movie/presentation/provider/movie_search_notifier.dart';
@@ -48,6 +51,48 @@ import 'package:http/io_client.dart';
 final locator = GetIt.instance;
 
 void init() {
+  //bloc movie
+
+  locator.registerFactory(
+    () => NowPlayingMoviesBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => PopularMoviesBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => MovieDetailBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => WatchlistMovieBloc(
+      locator(),
+      locator(),
+      locator(),
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => RecommendationMovieBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => MovieSearchBloc(
+      locator(),
+    ),
+  );
+
+  locator.registerFactory(
+    () => TopRatedMoviesBloc(
+      locator(),
+    ),
+  );
+
   // provider movie
   locator.registerFactory(
     () => MovieListNotifier(
