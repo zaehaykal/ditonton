@@ -1,52 +1,53 @@
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/folder_tv/presentation/provider/tv_now_playing_notifie.dart';
+import 'package:ditonton/folder_tv/presentation/bloc/tv/bloc/tv_bloc.dart';
 import 'package:ditonton/folder_tv/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TvNowPlayingPage extends StatefulWidget {
   static const ROUTE_NAME = '/-tv-nowplaying-page';
+  const TvNowPlayingPage({super.key});
 
   @override
-  _TvNowPlatingPageState createState() => _TvNowPlatingPageState();
+  _TopRatedTvPageState createState() => _TopRatedTvPageState();
 }
 
-class _TvNowPlatingPageState extends State<TvNowPlayingPage> {
+class _TopRatedTvPageState extends State<TvNowPlayingPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<TvNowPlayingNotifier>(context, listen: false)
-            .fetchNowPlayingNotifier());
+    Future.microtask(
+        () => context.read<NowPlayingTvBloc>().add(FetchNowPlayingTv()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tv Now Playing'),
+        title: const Text('Tv Now Playing'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<TvNowPlayingNotifier>(
-          builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
-              return Center(
+        child: BlocBuilder<NowPlayingTvBloc, TvState>(
+          builder: (context, state) {
+            if (state is TvLoading) {
+              return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.state == RequestState.Loaded) {
+            } else if (state is TvHasData) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final tv = data.tv[index];
+                  final tv = state.tv[index];
                   return TvCard(tv);
                 },
-                itemCount: data.tv.length,
+                itemCount: state.tv.length,
+              );
+            } else if (state is TvHasError) {
+              return Center(
+                key: const Key('error_message'),
+                child: Text(state.message),
               );
             } else {
-              return Center(
-                key: Key('error_message'),
-                child: Text(data.message),
-              );
+              return const Text('No Data');
             }
           },
         ),

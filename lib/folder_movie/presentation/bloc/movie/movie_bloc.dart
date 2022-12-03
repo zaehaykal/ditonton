@@ -53,26 +53,6 @@ class PopularMoviesBloc extends Bloc<MovieBlocEvent, MovieBlocState> {
   }
 }
 
-// class TopRatedMoviesBloc extends Bloc<MovieBlocEvent, MovieBlocState> {
-//   final GetTopRatedMovies _getTopRatedMovies;
-
-//   TopRatedMoviesBloc(this._getTopRatedMovies) : super(MoviesEmpty()) {
-//     on<FetchTopRatedMovies>((event, emit) async {
-//       emit(MoviesLoading());
-//       final result = await _getTopRatedMovies.execute();
-
-//       result.fold(
-//         (failure) {
-//           emit(MoviesHasError(failure.message));
-//         },
-//         (moviesData) {
-//           emit(MoviesHasData(moviesData));
-//         },
-//       );
-//     });
-//   }
-// }
-
 class MovieDetailBloc extends Bloc<MovieBlocEvent, MovieBlocState> {
   final GetMovieDetail _getMovieDetail;
 
