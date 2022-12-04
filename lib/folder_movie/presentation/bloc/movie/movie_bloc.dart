@@ -4,22 +4,22 @@ import 'package:ditonton/folder_movie/domain/entities/movie.dart';
 import 'package:ditonton/folder_movie/domain/entities/movie_detail.dart';
 import 'package:ditonton/folder_movie/domain/usecases/get_movie_detail.dart';
 import 'package:ditonton/folder_movie/domain/usecases/get_movie_recommendations.dart';
-import 'package:ditonton/folder_movie/domain/usecases/get_now_playing_movies.dart';
 import 'package:ditonton/folder_movie/domain/usecases/get_popular_movies.dart';
 import 'package:ditonton/folder_movie/domain/usecases/get_watchlist_movies.dart';
 import 'package:ditonton/folder_movie/domain/usecases/get_watchlist_status.dart';
 import 'package:ditonton/folder_movie/domain/usecases/remove_watchlist.dart';
+import 'package:ditonton/folder_movie/domain/usecases/get_top_rated_movies.dart';
 import 'package:ditonton/folder_movie/domain/usecases/save_watchlist.dart';
 part 'movie_event.dart';
 part 'movie_state.dart';
 
-class NowPlayingMoviesBloc extends Bloc<MovieBlocEvent, MovieBlocState> {
-  final GetNowPlayingMovies _getNowPlayingMovies;
+class PopularMoviesBloc extends Bloc<MovieBlocEvent, MovieBlocState> {
+  final GetPopularMovies _getPopularMovies;
 
-  NowPlayingMoviesBloc(this._getNowPlayingMovies) : super(MoviesEmpty()) {
-    on<FetchNowPlayingMovies>((event, emit) async {
+  PopularMoviesBloc(this._getPopularMovies) : super(MoviesEmpty()) {
+    on<FetchPopularMovies>((event, emit) async {
       emit(MoviesLoading());
-      final result = await _getNowPlayingMovies.execute();
+      final result = await _getPopularMovies.execute();
 
       result.fold(
         (failure) {
@@ -33,13 +33,13 @@ class NowPlayingMoviesBloc extends Bloc<MovieBlocEvent, MovieBlocState> {
   }
 }
 
-class PopularMoviesBloc extends Bloc<MovieBlocEvent, MovieBlocState> {
-  final GetPopularMovies _getPopularMovies;
+class TopRatedMoviesBloc extends Bloc<MovieBlocEvent, MovieBlocState> {
+  final GetTopRatedMovies _getTopRatedMovies;
 
-  PopularMoviesBloc(this._getPopularMovies) : super(MoviesEmpty()) {
-    on<FetchPopularMovies>((event, emit) async {
+  TopRatedMoviesBloc(this._getTopRatedMovies) : super(MoviesEmpty()) {
+    on<FetchTopRatedMovies>((event, emit) async {
       emit(MoviesLoading());
-      final result = await _getPopularMovies.execute();
+      final result = await _getTopRatedMovies.execute();
 
       result.fold(
         (failure) {
