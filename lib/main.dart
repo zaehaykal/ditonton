@@ -1,8 +1,8 @@
+import 'package:ditonton/common/sslpinning.dart';
 import 'package:ditonton/common/style/colors.dart';
 import 'package:ditonton/common/style/fonts_style.dart';
 import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/folder_tv/presentation/pages/home_tv_page.dart';
-import 'package:ditonton/folder_movie/presentation/bloc/movie/movie_toprated_bloc.dart';
 import 'package:ditonton/folder_tv/presentation/pages/tv_now_playing_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:ditonton/folder_tv/presentation/bloc/search/tv_search_bloc.dart';
@@ -30,9 +30,12 @@ import 'package:ditonton/folder_tv/presentation/pages/tv_search_page.dart';
 import 'package:ditonton/folder_tv/presentation/pages/tv_top_rated_page.dart';
 import 'package:ditonton/folder_tv/presentation/pages/tv_detail_page.dart';
 import 'package:ditonton/folder_tv/presentation/pages/tv_watchlist_page.dart';
+import 'package:ditonton/folder_movie/presentation/bloc/movie/movie_np_bloc.dart';
 import 'package:ditonton/injection.dart' as di;
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SslPinning.init();
   di.init();
   runApp(MyApp());
 }
@@ -44,13 +47,13 @@ class MyApp extends StatelessWidget {
       providers: [
         //bloc movie
         BlocProvider(
-          create: (_) => di.locator<NowPlayingMoviesBloc>(),
-        ),
-        BlocProvider(
           create: (_) => di.locator<MovieDetailBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<RecommendationMovieBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<NowPlayingMoviesBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<MovieSearchBloc>(),

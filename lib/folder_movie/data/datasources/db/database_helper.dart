@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:ditonton/folder_movie/data/models/movie_table.dart';
 import 'package:sqflite/sqflite.dart';
 

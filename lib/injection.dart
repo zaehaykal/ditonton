@@ -1,3 +1,4 @@
+import 'package:ditonton/common/sslpinning.dart';
 import 'package:ditonton/folder_movie/data/datasources/db/database_helper.dart';
 import 'package:ditonton/folder_movie/data/datasources/movie_local_data_source.dart';
 import 'package:ditonton/folder_movie/data/datasources/movie_remote_data_source.dart';
@@ -14,7 +15,7 @@ import 'package:ditonton/folder_movie/domain/usecases/remove_watchlist.dart';
 import 'package:ditonton/folder_movie/domain/usecases/save_watchlist.dart';
 import 'package:ditonton/folder_movie/domain/usecases/search_movies.dart';
 import 'package:ditonton/folder_movie/presentation/bloc/movie/movie_bloc.dart';
-import 'package:ditonton/folder_movie/presentation/bloc/movie/movie_toprated_bloc.dart';
+import 'package:ditonton/folder_movie/presentation/bloc/movie/movie_np_bloc.dart';
 import 'package:ditonton/folder_movie/presentation/bloc/search/movie_search_bloc.dart';
 import 'package:ditonton/folder_movie/presentation/provider/movie_detail_notifier.dart';
 import 'package:ditonton/folder_movie/presentation/provider/movie_list_notifier.dart';
@@ -49,12 +50,12 @@ void init() {
   //bloc movie
 
   locator.registerFactory(
-    () => NowPlayingMoviesBloc(
+    () => PopularMoviesBloc(
       locator(),
     ),
   );
   locator.registerFactory(
-    () => PopularMoviesBloc(
+    () => NowPlayingMoviesBloc(
       locator(),
     ),
   );
@@ -76,6 +77,11 @@ void init() {
       locator(),
     ),
   );
+  // locator.registerFactory(
+  //   () => NowPlayingMoviesBloc(
+  //     locator(),
+  //   ),
+  // );
   locator.registerFactory(
     () => MovieSearchBloc(
       locator(),
@@ -221,5 +227,6 @@ void init() {
 
   // external
   locator.registerLazySingleton(() => http.Client());
-  locator.registerLazySingleton(() => IOClient());
+  // // locator.registerLazySingleton(() => IOClient());
+  locator.registerLazySingleton(() => SslPinning.client);
 }
