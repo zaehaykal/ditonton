@@ -4,11 +4,6 @@ import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/folder_tv/presentation/pages/home_tv_page.dart';
 import 'package:ditonton/folder_movie/presentation/bloc/movie/movie_toprated_bloc.dart';
 import 'package:ditonton/folder_tv/presentation/pages/tv_now_playing_page.dart';
-import 'package:ditonton/folder_tv/presentation/provider/tv_popular_notifier.dart';
-import 'package:ditonton/folder_tv/presentation/provider/tv_top_rated_notifier.dart';
-import 'package:ditonton/folder_tv/presentation/provider/tv_detail_notifier.dart';
-import 'package:ditonton/folder_tv/presentation/provider/tv_search_notifier.dart';
-import 'package:ditonton/folder_tv/presentation/provider/tv_watchlist_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:ditonton/folder_tv/presentation/bloc/search/tv_search_bloc.dart';
 import 'package:ditonton/folder_movie/presentation/bloc/search/movie_search_bloc.dart';
@@ -33,10 +28,8 @@ import 'package:ditonton/folder_movie/presentation/provider/watchlist_movie_noti
 import 'package:ditonton/folder_tv/presentation/pages/tv_popular_page.dart';
 import 'package:ditonton/folder_tv/presentation/pages/tv_search_page.dart';
 import 'package:ditonton/folder_tv/presentation/pages/tv_top_rated_page.dart';
-import 'package:ditonton/folder_tv/presentation/provider/tv_now_playing_notifie.dart';
 import 'package:ditonton/folder_tv/presentation/pages/tv_detail_page.dart';
 import 'package:ditonton/folder_tv/presentation/pages/tv_watchlist_page.dart';
-import 'package:ditonton/folder_tv/presentation/provider/tv_list_notifier.dart';
 import 'package:ditonton/injection.dart' as di;
 
 void main() {
@@ -114,52 +107,6 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => di.locator<WatchlistTvBloc>(),
-        ),
-
-        //provider Tv
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvListNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvDetailNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvSearchNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvPopularNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvTopRatedNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvNowPlayingNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvWatchListNotifier>(),
-        ),
-
-        //provider tv
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvListNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvDetailNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvSearchNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvPopularNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvTopRatedNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvNowPlayingNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvWatchListNotifier>(),
         ),
       ],
       child: MaterialApp(
