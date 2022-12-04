@@ -226,7 +226,5 @@ void init() {
   locator.registerLazySingleton<TvDatabaseHelper>(() => TvDatabaseHelper());
 
   // external
-  locator.registerLazySingleton(() => http.Client());
-  // // locator.registerLazySingleton(() => IOClient());
-  locator.registerLazySingleton(() => SslPinning.client);
+  locator.registerLazySingleton(() => HttpSSLPinning.client);
 }

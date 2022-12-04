@@ -35,7 +35,7 @@ import 'package:ditonton/injection.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SslPinning.init();
+  await HttpSSLPinning.init();
   di.init();
   runApp(MyApp());
 }

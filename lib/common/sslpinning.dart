@@ -1,22 +1,12 @@
-import 'dart:io';
-import 'package:flutter/services.dart';
-import 'package:http/io_client.dart';
+import 'package:ditonton/common/share.dart';
+import 'package:http/http.dart' as http;
 
-class SslPinning {
-  static IOClient? _client;
-  static IOClient get client => _client ?? IOClient();
+class HttpSSLPinning {
+  static Future<http.Client> get _instance async =>
+      _clientInstance ??= await Certificates.createLEClient();
+  static http.Client? _clientInstance;
+  static http.Client get client => _clientInstance ?? http.Client();
   static Future<void> init() async {
-    _client = await instance;
-  }
-
-  static Future<IOClient> get instance async => _client ??= await ioClient();
-  static Future<IOClient> ioClient() async {
-    SecurityContext securityContext = SecurityContext(withTrustedRoots: false);
-    final sslCert = await rootBundle.load('certificates/certificates.crt');
-    securityContext.setTrustedCertificatesBytes(sslCert.buffer.asInt8List());
-    HttpClient client = HttpClient(context: securityContext);
-    client.badCertificateCallback =
-        (X509Certificate cert, String host, int port) => false;
-    return IOClient(client);
+    _clientInstance = await _instance;
   }
 }
