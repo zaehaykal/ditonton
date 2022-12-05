@@ -2,9 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/folder_movie/domain/entities/movie.dart';
-import 'package:ditonton/folder_movie/presentation/bloc/movie/movie_bloc.dart';
 import 'package:ditonton/folder_movie/presentation/bloc/search/movie_search_bloc.dart';
-import 'package:ditonton/folder_tv/presentation/bloc/search/tv_search_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -13,12 +11,12 @@ import 'movie_search_bloc_test.mocks.dart';
 
 @GenerateMocks([MovieSearchBloc])
 void main() {
-  late MovieSearchBloc searchTvShowBloc;
-  late MockSearchMovie mockSearchTvShows;
+  late MovieSearchBloc searchMoviesShowBloc;
+  late MockSearchMovie mockSearchMoviesShows;
 
   setUp(() {
-    mockSearchTvShows = MockSearchMovie();
-    searchTvShowBloc = MovieSearchBloc(mockSearchTvShows);
+    mockSearchMoviesShows = MockSearchMovie();
+    searchMoviesShowBloc = MovieSearchBloc(mockSearchMoviesShows);
   });
 
   final tMovieModel = Movie(
@@ -40,63 +38,63 @@ void main() {
   final tMovieList = <Movie>[tMovieModel];
   const tQuery = 'Spider';
 
-  group('Search Tv', () {
+  group('Search Movies', () {
     test('Initial state should be empty', () {
-      expect(searchTvShowBloc.state, SearchEmpty());
+      expect(searchMoviesShowBloc.state, SearchEmpty());
     });
 
     blocTest<MovieSearchBloc, SearchState>(
-      'Should emit [SearchLoading, MoviesLoading] when data is gotten successfully',
+      'Should emit [SearchLoading, SearchLoading] when data is gotten successfully',
       build: () {
-        when(mockSearchTvShows.execute(tQuery))
+        when(mockSearchMoviesShows.execute(tQuery))
             .thenAnswer((_) async => Right(tMovieList));
-        return searchTvShowBloc;
+        return searchMoviesShowBloc;
       },
       act: (bloc) => bloc.add(const OnMovieQueryChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
-        MoviesLoading(),
+        SearchLoading(),
         SearchMovieHasData(tMovieList),
       ],
       verify: (bloc) {
-        verify(mockSearchTvShows.execute(tQuery));
+        verify(mockSearchMoviesShows.execute(tQuery));
       },
     );
 
     blocTest<MovieSearchBloc, SearchState>(
-      'Should emit [MoviesLoading, SearchMovieHasData[], SearchEmpty] when data is empty',
+      'Should emit [SearchLoading, SearchMovieHasData[], SearchEmpty] when data is empty',
       build: () {
-        when(mockSearchTvShows.execute(tQuery))
+        when(mockSearchMoviesShows.execute(tQuery))
             .thenAnswer((_) async => const Right(<Movie>[]));
-        return searchTvShowBloc;
+        return searchMoviesShowBloc;
       },
       act: (bloc) => bloc.add(const OnMovieQueryChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
-        MoviesLoading(),
+        SearchLoading(),
         SearchMovieHasData(<Movie>[]),
         SearchEmpty(),
       ],
       verify: (bloc) {
-        verify(mockSearchTvShows.execute(tQuery));
+        verify(mockSearchMoviesShows.execute(tQuery));
       },
     );
 
     blocTest<MovieSearchBloc, SearchState>(
-      'Should emit [MoviesLoading, TvSearchError] when data is unsuccessful',
+      'Should emit [SearchLoading, SearchError] when data is unsuccessful',
       build: () {
-        when(mockSearchTvShows.execute(tQuery))
+        when(mockSearchMoviesShows.execute(tQuery))
             .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
-        return searchTvShowBloc;
+        return searchMoviesShowBloc;
       },
       act: (bloc) => bloc.add(const OnMovieQueryChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
-        MoviesLoading(),
-        const TvSearchError('Server Failure'),
+        SearchLoading(),
+        const SearchError('Server Failure'),
       ],
       verify: (bloc) {
-        verify(mockSearchTvShows.execute(tQuery));
+        verify(mockSearchMoviesShows.execute(tQuery));
       },
     );
   });
