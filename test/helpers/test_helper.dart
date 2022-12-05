@@ -8,7 +8,6 @@ import 'package:ditonton/folder_movie/domain/repositories/movie_repository.dart'
 import 'package:ditonton/folder_tv/domain/repositories/tv_repository.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:ditonton/folder_tv/presentation/bloc/tv/bloc/tv_bloc.dart';
-import 'package:ditonton/folder_movie/presentation/bloc/movie/movie_np_bloc.dart';
 import 'package:mockito/annotations.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
