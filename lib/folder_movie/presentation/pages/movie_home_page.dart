@@ -77,14 +77,6 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.car_crash_sharp),
-              title: Text('Watchlist Tv'),
-              onTap: () {
-                FirebaseCrashlytics.instance.crash();
-                Navigator.pushNamed(context, TvWatchListPage.ROUTE_NAME);
-              },
-            ),
-            ListTile(
               onTap: () {
                 Navigator.pushNamed(context, AboutPage.ROUTE_NAME);
               },
