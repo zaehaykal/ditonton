@@ -12,7 +12,6 @@ import 'package:ditonton/folder_movie/presentation/pages/watchlist_movies_page.d
 import 'package:ditonton/common/style/fonts_style.dart';
 import 'package:ditonton/folder_tv/presentation/pages/home_tv_page.dart';
 import 'package:ditonton/folder_tv/presentation/pages/tv_watchlist_page.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
