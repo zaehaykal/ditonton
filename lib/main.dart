@@ -4,6 +4,7 @@ import 'package:ditonton/common/style/fonts_style.dart';
 import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/folder_tv/presentation/pages/home_tv_page.dart';
 import 'package:ditonton/folder_tv/presentation/pages/tv_now_playing_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:ditonton/folder_tv/presentation/bloc/search/tv_search_bloc.dart';
 import 'package:ditonton/folder_movie/presentation/bloc/search/movie_search_bloc.dart';
@@ -33,13 +34,14 @@ import 'package:ditonton/folder_tv/presentation/pages/tv_watchlist_page.dart';
 import 'package:ditonton/folder_movie/presentation/bloc/movie/movie_np_bloc.dart';
 import 'package:ditonton/injection.dart' as di;
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HttpSSLPinning.init();
+  await Firebase.initializeApp();
   di.init();
   runApp(MyApp());
 }
-
+ 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

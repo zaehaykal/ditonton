@@ -40,7 +40,6 @@ import 'package:ditonton/folder_tv/domain/usecases/tv_remove_watchlist.dart';
 import 'package:ditonton/folder_tv/domain/usecases/tv_save_watchlist.dart';
 import 'package:ditonton/folder_tv/presentation/bloc/search/tv_search_bloc.dart';
 import 'package:ditonton/folder_tv/presentation/bloc/tv/bloc/tv_bloc.dart';
-import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 import 'package:http/io_client.dart';
 
@@ -226,5 +225,6 @@ void init() {
   locator.registerLazySingleton<TvDatabaseHelper>(() => TvDatabaseHelper());
 
   // external
+  locator.registerLazySingleton(() => IOClient());
   locator.registerLazySingleton(() => HttpSSLPinning.client);
 }

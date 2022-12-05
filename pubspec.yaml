@@ -48,6 +48,10 @@ dependencies:
   mocktail: ^0.3.0
   sqflite_sqlcipher: ^2.1.1+1
   http_certificate_pinning: ^2.0.4
+  flutterfire_cli: ^0.2.7
+  firebase_core: ^2.3.0
+  firebase_crashlytics: ^3.0.6
+  cloud_firestore: ^4.1.0
 
 dev_dependencies:
   mockito: ^5.0.8
