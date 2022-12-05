@@ -50,3 +50,21 @@ Jika kamu menerapkan modular pada project, Anda dapat memanfaatkan berkas `test.
     Proses ini akan men-*generate* berkas `lcov.info` dan folder `coverage` terkait dengan laporan coverage.
 4. Tunggu proses testing selesai hingga muncul web terkait laporan coverage.
 
+## Test Coverage
+![Screenshot (72)](https://user-images.githubusercontent.com/110841646/205654427-12c2d75b-1257-4a6a-a231-f2adbf6f6292.png)
+
+## Mendeteksi push kode lalu men-trigger build baru
+![Screenshot (73)](https://user-images.githubusercontent.com/110841646/205654468-c2f18d78-d8df-4a37-9644-eda1e4955964.png)
+
+## Code Magic Build OverView
+![Screenshot (75)](https://user-images.githubusercontent.com/110841646/205660336-afc4d386-ab4d-4c8a-8ca9-2edd0e4ef418.png)
+
+
+## Firebase Analytics
+![Screenshot (71)](https://user-images.githubusercontent.com/110841646/205654495-67ae4abc-b754-4721-a485-5adcf88bf040.png)
+
+
+## Firebase Crashlytics
+![Screenshot (74)](https://user-images.githubusercontent.com/110841646/205654924-0ccf9a2f-a035-47ef-9040-1f44a2689baf.png)
+
+
