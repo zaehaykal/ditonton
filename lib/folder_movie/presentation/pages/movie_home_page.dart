@@ -12,6 +12,7 @@ import 'package:ditonton/folder_movie/presentation/pages/watchlist_movies_page.d
 import 'package:ditonton/common/style/fonts_style.dart';
 import 'package:ditonton/folder_tv/presentation/pages/home_tv_page.dart';
 import 'package:ditonton/folder_tv/presentation/pages/tv_watchlist_page.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -72,6 +73,14 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               leading: Icon(Icons.save_alt),
               title: Text('Watchlist Tv'),
               onTap: () {
+                Navigator.pushNamed(context, TvWatchListPage.ROUTE_NAME);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.car_crash_sharp),
+              title: Text('Watchlist Tv'),
+              onTap: () {
+                FirebaseCrashlytics.instance.crash();
                 Navigator.pushNamed(context, TvWatchListPage.ROUTE_NAME);
               },
             ),
