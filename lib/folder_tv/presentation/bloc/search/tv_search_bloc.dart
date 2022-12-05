@@ -23,6 +23,9 @@ class TvSearchBloc extends Bloc<TvSearchEvent, TvSearchState> {
         },
         (data) {
           emit(TvSearchHasData(data));
+          if (data.isEmpty) {
+            emit(TvSearchEmpty());
+          }
         },
       );
     }, transformer: debounce(const Duration(milliseconds: 500)));
