@@ -1,96 +1,98 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/folder_tv/domain/entities/tv.dart';
+import 'package:ditonton/folder_movie/domain/entities/movie.dart';
+import 'package:ditonton/folder_movie/presentation/bloc/movie/movie_bloc.dart';
+import 'package:ditonton/folder_movie/presentation/bloc/search/movie_search_bloc.dart';
 import 'package:ditonton/folder_tv/presentation/bloc/search/tv_search_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'tv_search_bloc_test.mocks.dart';
+import 'movie_search_bloc_test.mocks.dart';
 
-@GenerateMocks([TvSearchBloc])
+@GenerateMocks([MovieSearchBloc])
 void main() {
-  late TvSearchBloc searchTvShowBloc;
-  late MockSearchTv mockSearchTvShows;
+  late MovieSearchBloc searchTvShowBloc;
+  late MockSearchMovie mockSearchTvShows;
 
   setUp(() {
-    mockSearchTvShows = MockSearchTv();
-    searchTvShowBloc = TvSearchBloc(mockSearchTvShows);
+    mockSearchTvShows = MockSearchMovie();
+    searchTvShowBloc = MovieSearchBloc(mockSearchTvShows);
   });
 
-  final tTvModel = Tv(
-    backdropPath: '/etj8E2o0Bud0HkONVQPjyCkIvpv.jpg',
-    firstAirDate: '2022-08-21',
-    genreIds: const [10765, 18, 10759],
-    id: 94997,
-    name: 'House of the Dragon',
-    originCountry: const ["US"],
-    originalLanguage: 'en',
-    originalName: 'House of the Dragon',
+  final tMovieModel = Movie(
+    adult: false,
+    backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
+    genreIds: const [14, 28],
+    id: 557,
+    originalTitle: 'Spider-Man',
     overview:
-        'The Targaryen dynasty is at the absolute apex of its power, with more than 15 dragons under their yoke. Most empires crumble from such heights. In the case of the Targaryens, their slow fall begins when King Viserys breaks with a century of tradition by naming his daughter Rhaenyra heir to the Iron Throne. But when Viserys later fathers a son, the court is shocked when Rhaenyra retains her status as his heir, and seeds of division sow friction across the realm.',
-    popularity: 7222.052,
-    posterPath: '/z2yahl2uefxDCl0nogcRBstwruJ.jpg',
-    voteAverage: 8.6,
-    voteCount: 1564,
+        'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
+    popularity: 60.441,
+    posterPath: '/rweIrveL43TaxUN0akQEaAXL6x0.jpg',
+    releaseDate: '2002-05-01',
+    title: 'Spider-Man',
+    video: false,
+    voteAverage: 7.2,
+    voteCount: 13507,
   );
-  final tTvList = <Tv>[tTvModel];
-  const tQuery = 'dragon';
+  final tMovieList = <Movie>[tMovieModel];
+  const tQuery = 'Spider';
 
   group('Search Tv', () {
     test('Initial state should be empty', () {
-      expect(searchTvShowBloc.state, TvSearchEmpty());
+      expect(searchTvShowBloc.state, SearchEmpty());
     });
 
-    blocTest<TvSearchBloc, TvSearchState>(
-      'Should emit [SearchLoading, TvSearchLoading] when data is gotten successfully',
+    blocTest<MovieSearchBloc, SearchState>(
+      'Should emit [SearchLoading, MoviesLoading] when data is gotten successfully',
       build: () {
         when(mockSearchTvShows.execute(tQuery))
-            .thenAnswer((_) async => Right(tTvList));
+            .thenAnswer((_) async => Right(tMovieList));
         return searchTvShowBloc;
       },
-      act: (bloc) => bloc.add(const OnTvQueryChanged(tQuery)),
+      act: (bloc) => bloc.add(const OnMovieQueryChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
-        TvSearchLoading(),
-        TvSearchHasData(tTvList),
+        MoviesLoading(),
+        SearchMovieHasData(tMovieList),
       ],
       verify: (bloc) {
         verify(mockSearchTvShows.execute(tQuery));
       },
     );
 
-    blocTest<TvSearchBloc, TvSearchState>(
-      'Should emit [TvSearchLoading, TvSearchHasData[], TvSearchEmpty] when data is empty',
+    blocTest<MovieSearchBloc, SearchState>(
+      'Should emit [MoviesLoading, SearchMovieHasData[], SearchEmpty] when data is empty',
       build: () {
         when(mockSearchTvShows.execute(tQuery))
-            .thenAnswer((_) async => const Right(<Tv>[]));
+            .thenAnswer((_) async => const Right(<Movie>[]));
         return searchTvShowBloc;
       },
-      act: (bloc) => bloc.add(const OnTvQueryChanged(tQuery)),
+      act: (bloc) => bloc.add(const OnMovieQueryChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
-        TvSearchLoading(),
-        TvSearchHasData(<Tv>[]),
-        TvSearchEmpty(),
+        MoviesLoading(),
+        SearchMovieHasData(<Movie>[]),
+        SearchEmpty(),
       ],
       verify: (bloc) {
         verify(mockSearchTvShows.execute(tQuery));
       },
     );
 
-    blocTest<TvSearchBloc, TvSearchState>(
-      'Should emit [TvSearchLoading, TvSearchError] when data is unsuccessful',
+    blocTest<MovieSearchBloc, SearchState>(
+      'Should emit [MoviesLoading, TvSearchError] when data is unsuccessful',
       build: () {
         when(mockSearchTvShows.execute(tQuery))
             .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
         return searchTvShowBloc;
       },
-      act: (bloc) => bloc.add(const OnTvQueryChanged(tQuery)),
+      act: (bloc) => bloc.add(const OnMovieQueryChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
-        TvSearchLoading(),
+        MoviesLoading(),
         const TvSearchError('Server Failure'),
       ],
       verify: (bloc) {
