@@ -58,7 +58,6 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCW-1H5ckKL6iWxDuNet8SmW6Iko8924SU',
-    // appId : '1:297694470933:android:aaa9821708a597c5d8bf1c',
     appId: '1:1014775196071:android:55c9ba9d5bf8c17cd52e82',
     messagingSenderId: '1014775196071',
     projectId: 'ditonton-ec623',
@@ -68,7 +67,6 @@ class DefaultFirebaseOptions {
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDc6nFRX8OMSdx9yVctBhz5Ak3Ic2mIAy8',
     appId: '1:1014775196071:ios:fab1d1ac59737bbfd52e82',
-    // appId : '1:297694470933:ios:49b4b12ded639f75d8bf1c',
     messagingSenderId: '1014775196071',
     projectId: 'ditonton-ec623',
     storageBucket: 'ditonton-ec623.appspot.com',

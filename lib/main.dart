@@ -27,11 +27,15 @@ import 'package:ditonton/folder_tv/presentation/pages/tv_detail_page.dart';
 import 'package:ditonton/folder_tv/presentation/pages/tv_watchlist_page.dart';
 import 'package:ditonton/folder_movie/presentation/bloc/movie/movie_np_bloc.dart';
 import 'package:ditonton/injection.dart' as di;
+import 'firebase_options.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HttpSSLPinning.init();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    name: "zaehaykal",
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   di.init();
   runApp(MyApp());
 }
