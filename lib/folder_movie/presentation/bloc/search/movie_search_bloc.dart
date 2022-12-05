@@ -23,6 +23,9 @@ class MovieSearchBloc extends Bloc<MovieSearchEvent, SearchState> {
         },
         (data) {
           emit(SearchMovieHasData(data));
+          if (data.isEmpty) {
+            emit(SearchEmpty());
+          }
         },
       );
     }, transformer: debounce(const Duration(milliseconds: 500)));

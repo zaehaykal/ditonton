@@ -20,12 +20,6 @@ import 'package:ditonton/folder_movie/presentation/pages/popular_movies_page.dar
 import 'package:ditonton/folder_movie/presentation/pages/search_page.dart';
 import 'package:ditonton/folder_movie/presentation/pages/top_rated_movies_page.dart';
 import 'package:ditonton/folder_movie/presentation/pages/watchlist_movies_page.dart';
-import 'package:ditonton/folder_movie/presentation/provider/movie_detail_notifier.dart';
-import 'package:ditonton/folder_movie/presentation/provider/movie_list_notifier.dart';
-import 'package:ditonton/folder_movie/presentation/provider/movie_search_notifier.dart';
-import 'package:ditonton/folder_movie/presentation/provider/popular_movies_notifier.dart';
-import 'package:ditonton/folder_movie/presentation/provider/top_rated_movies_notifier.dart';
-import 'package:ditonton/folder_movie/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:ditonton/folder_tv/presentation/pages/tv_popular_page.dart';
 import 'package:ditonton/folder_tv/presentation/pages/tv_search_page.dart';
 import 'package:ditonton/folder_tv/presentation/pages/tv_top_rated_page.dart';
@@ -68,26 +62,6 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => di.locator<WatchlistMovieBloc>(),
-        ),
-
-        //provider movie
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieListNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieDetailNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieSearchNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TopRatedMoviesNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<PopularMoviesNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<WatchlistMovieNotifier>(),
         ),
 
         //Bloc
