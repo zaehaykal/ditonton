@@ -33,17 +33,12 @@ workflows:
           -keysize 2048 \
           -validity 10000
       - |
-         - name: Prepare
-        script: pwd # current working directory is /Users/builder/clone/mobile
-      - name: Build iOS
-        working_directory: mobile/ios
-        script: pwd # current working directory is /Users/builder/clone/mobile/ios
-      - name: Build Android
-        working_directory: mobile/android
-        script: pwd # current working directory is /Users/builder/clone/mobile/android
-      - name: Process Logs
-        working_directory: /Users/builder/Library/Logs
-        script: pwd # current working directory is /Users/builder/Library/Logs
+        # set up local properties
+        echo "flutter.sdk=$HOME/programs/flutter" > "$FCI_BUILD_DIR/android/local.properties"
+      - flutter packages pub get
+      - flutter build appbundle --release
+      - find . -name "Podfile" -execdir pod install \;
+      - flutter build ios --release --no-codesign
     artifacts:
       - build/**/outputs/apk/**/*.apk
       - build/**/outputs/bundle/**/*.aab
