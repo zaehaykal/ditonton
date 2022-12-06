@@ -4,7 +4,7 @@
 workflows:
   default-workflow:
     name: Default Workflow
-    max_build_duration: 200
+    max_build_duration: 120
     environment:
       flutter: keytool -genkey -v -keystore codemagic.keystore -storetype JKS \
         -keyalg RSA -keysize 2048 -validity 10000 -alias codemagic
