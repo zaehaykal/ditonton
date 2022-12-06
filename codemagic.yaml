@@ -4,7 +4,7 @@
 workflows:
   default-workflow:
     name: Default Workflow
-    max_build_duration: 120
+    max_build_duration: 119
     environment:
       flutter: default
       xcode: latest
