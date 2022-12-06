@@ -34,7 +34,7 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HttpSSLPinning.init();
-  await SecurityContext(withTrustedRoots: false);
+  SecurityContext(withTrustedRoots: false);
   await Firebase.initializeApp(
     name: "zaehaykal",
     options: DefaultFirebaseOptions.currentPlatform,
