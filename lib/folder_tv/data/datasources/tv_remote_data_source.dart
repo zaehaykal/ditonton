@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 import 'package:ditonton/common/exception.dart';
-import 'package:http/io_client.dart';
+import 'package:http/http.dart' as http;
 import 'package:ditonton/folder_tv/data/models/tv_detail_model.dart';
 import 'package:ditonton/folder_tv/data/models/tv_model.dart';
 import 'package:ditonton/folder_tv/data/models/tv_response.dart';
@@ -20,7 +20,7 @@ class TvRemoteDataSourceImpl implements TvRemoteDataSource {
   static const baseUrl = 'https://api.themoviedb.org/3';
   static const apiKey = 'api_key=2174d146bb9c0eab47529b2e77d6b526';
 
-  final IOClient client;
+  final http.Client client;
 
   TvRemoteDataSourceImpl({required this.client});
 

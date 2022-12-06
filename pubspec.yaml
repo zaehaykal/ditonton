@@ -52,6 +52,8 @@ dependencies:
   firebase_core: ^2.3.0
   firebase_crashlytics: ^3.0.6
   cloud_firestore: ^4.1.0
+  data_connection_checker: ^0.3.4
+  integration_test: ^0.8.1
 
 dev_dependencies:
   mockito: ^5.0.8

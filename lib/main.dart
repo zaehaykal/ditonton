@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ditonton/common/sslpinning.dart';
 import 'package:ditonton/common/style/colors.dart';
 import 'package:ditonton/common/style/fonts_style.dart';
@@ -29,9 +31,10 @@ import 'package:ditonton/folder_movie/presentation/bloc/movie/movie_np_bloc.dart
 import 'package:ditonton/injection.dart' as di;
 import 'firebase_options.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HttpSSLPinning.init();
+  await SecurityContext(withTrustedRoots: false);
   await Firebase.initializeApp(
     name: "zaehaykal",
     options: DefaultFirebaseOptions.currentPlatform,
