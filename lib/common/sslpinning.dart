@@ -1,4 +1,4 @@
-import 'package:ditonton/common/share.dart';
+import 'package:ditonton/common/certificates.dart';
 import 'package:http/http.dart' as http;
 
 class HttpSSLPinning {

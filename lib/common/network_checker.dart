@@ -2,11 +2,11 @@
 
 import 'package:data_connection_checker/data_connection_checker.dart';
 
-abstract class NetworkInfo {
+abstract class NetworkChecker {
   Future<bool> get isConnected;
 }
 
-class NetworkInfoImpl implements NetworkInfo {
+class NetworkInfoImpl implements NetworkChecker {
   final DataConnectionChecker connectionChecker;
 
   NetworkInfoImpl(this.connectionChecker);

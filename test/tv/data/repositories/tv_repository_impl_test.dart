@@ -91,20 +91,32 @@ void main() {
       verify(mockTvRemoteDataSource.getNowPlayingTv());
       expect(result, equals(Left(ServerFailure(''))));
     });
-
     test(
-        'should return connection failure when the device is not connected to internet',
+        'should return Certification Failure when the call to remote data source is unsuccessful',
         () async {
       // arrange
       when(mockTvRemoteDataSource.getNowPlayingTv())
-          .thenThrow(const SocketException('Failed to connect to the network'));
+          .thenThrow(const TlsException());
       // act
       final result = await repositoryImpl.getNowPlayingTv();
       // assert
       verify(mockTvRemoteDataSource.getNowPlayingTv());
-      expect(result,
-          equals(Left(ConnectionFailure('Failed to connect to the network'))));
+      expect(result, equals(Left(SSLFailure('Certificate Verify failed:\n'))));
     });
+  });
+
+  test(
+      'should return connection failure when the device is not connected to internet',
+      () async {
+    // arrange
+    when(mockTvRemoteDataSource.getNowPlayingTv())
+        .thenThrow(const SocketException('Failed to connect to the network'));
+    // act
+    final result = await repositoryImpl.getNowPlayingTv();
+    // assert
+    verify(mockTvRemoteDataSource.getNowPlayingTv());
+    expect(result,
+        equals(Left(ConnectionFailure('Failed to connect to the network'))));
   });
 
   group('Popular TV', () {

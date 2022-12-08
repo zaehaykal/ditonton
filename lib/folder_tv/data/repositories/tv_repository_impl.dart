@@ -27,6 +27,8 @@ class TvRepositoryImpl implements TvRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(SSLFailure('Certificate Verify failed:\n${e.message}'));
     }
   }
 
@@ -39,6 +41,8 @@ class TvRepositoryImpl implements TvRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(SSLFailure('Certificate Verify failed:\n${e.message}'));
     }
   }
 
@@ -51,6 +55,8 @@ class TvRepositoryImpl implements TvRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(SSLFailure('Certificate Verify failed:\n${e.message}'));
     }
   }
 
@@ -63,6 +69,8 @@ class TvRepositoryImpl implements TvRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(SSLFailure('Certificate Verify failed:\n${e.message}'));
     }
   }
 
@@ -75,6 +83,8 @@ class TvRepositoryImpl implements TvRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(SSLFailure('Certificate Verify failed:\n${e.message}'));
     }
   }
 
@@ -87,6 +97,8 @@ class TvRepositoryImpl implements TvRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(SSLFailure('Certificate Verify failed:\n${e.message}'));
     }
   }
 
@@ -122,7 +134,11 @@ class TvRepositoryImpl implements TvRepository {
 
   @override
   Future<Either<Failure, List<Tv>>> getWatchlistTv() async {
-    final reslut = await localDataSource.getWatchlistTv();
-    return Right(reslut.map((data) => data.toEntity()).toList());
+    try {
+      final reslut = await localDataSource.getWatchlistTv();
+      return Right(reslut.map((data) => data.toEntity()).toList());
+    } on TlsException catch (e) {
+      return Left(SSLFailure('Certificate Verify failed:\n${e.message}'));
+    }
   }
 }
