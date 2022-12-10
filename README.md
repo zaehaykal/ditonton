@@ -1,56 +1,33 @@
 [![Codemagic build status](https://api.codemagic.io/apps/638b0f4eb1716042e261135e/default-workflow/status_badge.svg)](https://codemagic.io/apps/638b0f4eb1716042e261135e/default-workflow/latest_build)
 
-# a199-flutter-expert-project
+<h1 align="center">a199-flutter-expert-project</h1>
 
-Repository ini merupakan starter project submission kelas Flutter Expert Dicoding Indonesia.
+
+<h2 align="center">Repository ini merupakan project submission kelas Flutter Expert Dicoding Indonesia, menggunakan Template yang sudah di sediakan.</h2>
 
 ---
+<h2 align="center">Kriteria Submission Awal</h2>
 
-## Tips Submission Awal
+<h4 align="center">
+&#10004; Daftar TV Series
+&#10004; Detail TV Series
+&#10004; Pencarian TV Series
+&#10004; Watchlist
+&#10004; Automated Testing
+&#10004; Clean Architecture &#10004;
+</h4>
 
-Pastikan untuk memeriksa kembali seluruh hasil testing pada submissionmu sebelum dikirimkan. Karena kriteria pada submission ini akan diperiksa setelah seluruh berkas testing berhasil dijalankan.
+
+<h2 align="center">Kriteria Submission Akhir</h2>
+
+<h4 align="center">
+&#10004; Continuous Integration
+&#10004; Library BLoC
+&#10004; SSL Pinning
+&#10004; Integrasi dengan Firebase Analytics & Crashlytics &#10004;
+</h4>
 
 
-## Tips Submission Akhir
-
-Jika kamu menerapkan modular pada project, Anda dapat memanfaatkan berkas `test.sh` pada repository ini. Berkas tersebut dapat mempermudah proses testing melalui *terminal* atau *command prompt*. Sebelumnya menjalankan berkas tersebut, ikuti beberapa langkah berikut:
-1. Install terlebih dahulu aplikasi sesuai dengan Operating System (OS) yang Anda gunakan.
-    - Bagi pengguna **Linux**, jalankan perintah berikut pada terminal.
-        ```
-        sudo apt-get update -qq -y
-        sudo apt-get install lcov -y
-        ```
-    
-    - Bagi pengguna **Mac**, jalankan perintah berikut pada terminal.
-        ```
-        brew install lcov
-        ```
-    - Bagi pengguna **Windows**, ikuti langkah berikut.
-        - Install [Chocolatey](https://chocolatey.org/install) pada komputermu.
-        - Setelah berhasil, install [lcov](https://community.chocolatey.org/packages/lcov) dengan menjalankan perintah berikut.
-            ```
-            choco install lcov
-            ```
-        - Kemudian cek **Environtment Variabel** pada kolom **System variabels** terdapat variabel GENTHTML dan LCOV_HOME. Jika tidak tersedia, Anda bisa menambahkan variabel baru dengan nilai seperti berikut.
-            | Variable | Value|
-            | ----------- | ----------- |
-            | GENTHTML | C:\ProgramData\chocolatey\lib\lcov\tools\bin\genhtml |
-            | LCOV_HOME | C:\ProgramData\chocolatey\lib\lcov\tools |
-        
-2. Untuk mempermudah proses verifikasi testing, jalankan perintah berikut.
-    ```
-    git init
-    ```
-3. Kemudian jalankan berkas `test.sh` dengan perintah berikut pada *terminal* atau *powershell*.
-    ```
-    test.sh
-    ```
-    atau
-    ```
-    ./test.sh
-    ```
-    Proses ini akan men-*generate* berkas `lcov.info` dan folder `coverage` terkait dengan laporan coverage.
-4. Tunggu proses testing selesai hingga muncul web terkait laporan coverage.
 
 ## Test Coverage
 ![Screenshot (72)](https://user-images.githubusercontent.com/110841646/205654427-12c2d75b-1257-4a6a-a231-f2adbf6f6292.png)
