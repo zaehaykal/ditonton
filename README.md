@@ -1,12 +1,12 @@
 [![Codemagic build status](https://api.codemagic.io/apps/638b0f4eb1716042e261135e/default-workflow/status_badge.svg)](https://codemagic.io/apps/638b0f4eb1716042e261135e/default-workflow/latest_build)
 
-<h1 align="center">a199-flutter-expert-project</h1>
+<h1 align="center">:point_down:	a199-flutter-expert-project :point_down:	</h1>
 
 
 <h2 align="center">Repository ini merupakan project submission kelas Flutter Expert Dicoding Indonesia, menggunakan Template yang sudah di sediakan.</h2>
 
 ---
-<h2 align="center">Kriteria Submission Awal</h2>
+<h2 align="center">:raised_hands:Kriteria Submission Awal :raised_hands:</h2>
 
 <h4 align="center">
 &#10004; Daftar TV Series
@@ -18,7 +18,7 @@
 </h4>
 
 
-<h2 align="center">Kriteria Submission Akhir</h2>
+<h2 align="center">:raised_hands:Kriteria Submission Akhir :raised_hands:</h2>
 
 <h4 align="center">
 &#10004; Continuous Integration
@@ -26,6 +26,25 @@
 &#10004; SSL Pinning
 &#10004; Integrasi dengan Firebase Analytics & Crashlytics &#10004;
 </h4>
+
+
+<h2 align="center">Project Prototype Movie 	:ok_hand:</h2>
+<p align="center">
+<img  width="220px" src="https://github.com/zaehaykal/ditonton/blob/master/assets/home-page-movie.jpeg.jpeg" /> 
+<img  width="220px" src="https://github.com/zaehaykal/ditonton/blob/master/assets/detail-page-movie.jpeg.jpeg" /> 
+<img  width="220px" src="https://github.com/zaehaykal/ditonton/blob/master/assets/search-page-movie.jpeg.jpeg" /> 
+<img  width="220px" src="https://github.com/zaehaykal/ditonton/blob/master/assets/watchlist-page-movie.jpeg.jpeg" />  
+</p>
+<br>
+
+<h2 align="center">Project Prototype Tv 	:ok_hand:</h2>
+<p align="center">
+<img  width="220px" src="https://github.com/zaehaykal/ditonton/blob/master/assets/home-page-tv.jpeg.jpeg" /> 
+<img  width="220px" src="https://github.com/zaehaykal/ditonton/blob/master/assets/detail-page-tv.jpeg.jpeg" /> 
+<img  width="220px" src="https://github.com/zaehaykal/ditonton/blob/master/assets/search-page-tv.jpeg.jpeg" /> 
+<img  width="220px" src="https://github.com/zaehaykal/ditonton/blob/master/assets/watchlist-page-tv.jpeg.jpeg" />  
+</p>
+<br>
 
 
 
